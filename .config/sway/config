@@ -1,3 +1,10 @@
+set $font  'CommitMono Nerd Font 10'
+set $black '#181616'
+set $white '#c5c9c5'
+set $gray  '#424242'
+set $blue  '#2d4f67'
+set $red   '#672d32'
+
 seat seat0 hide_cursor 10000
 input type:pointer {
     accel_profile flat
@@ -8,10 +15,10 @@ input type:keyboard {
     repeat_delay 250
     repeat_rate  50
 }
-output * allow_tearing yes
-
-set $font  'CommitMono Nerd Font 10'
-set $black '#000000'
+output * {
+    allow_tearing yes
+    background $black solid_color
+}
 
 exec alacritty
 exec swayidle -w \
@@ -25,13 +32,14 @@ bindsym Super+Shift+c         reload
 bindsym Super+BackSpace       exec swaylock -fuc $black
 bindsym Super+Shift+BackSpace exec swaymsg exit
 
-bindsym Super+Return  exec alacritty msg create-window || alacritty
-bindsym Super+w       exec firefox
-bindsym Super+e       exec pcmanfm
-bindsym Super+r       exec wmenu-run -f $font
+bindsym Super+Return exec alacritty msg create-window || alacritty
+bindsym Super+w      exec firefox
+bindsym Super+e      exec pcmanfm
+bindsym Super+r      exec wmenu-run \
+    -f $font -N $black -n $white -S $blue -s $white
 
-bindsym Print         exec grim
-bindsym Shift+Print   exec slurp | grim -g - - | wl-copy
+bindsym Print        exec grim
+bindsym Shift+Print  exec slurp | grim -g - - | wl-copy
 
 bindsym --locked XF86AudioMute exec \
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -100,12 +108,16 @@ bindsym Super+grave       scratchpad show
 bindsym Super+Shift+grave move scratchpad
 
 floating_modifier Super
-
 font $font
 title_align center
 titlebar_padding 1
 default_border pixel
 hide_edge_borders --i3 smart
+
+client.focused          $blue  $blue  $white $white $blue
+client.focused_inactive $gray  $gray  $white $white $gray
+client.unfocused        $black $black $white $white $black
+client.urgent           $red   $red   $white $white $red
 
 bindsym Super+b bar mode toggle
 bar {
@@ -114,6 +126,16 @@ bar {
     height 15
     status_command i3status
     separator_symbol '  '
+
+    colors {
+        background $black
+        statusline $white
+        separator  $white
+        focused_workspace  $blue  $blue  $white
+        active_workspace   $white $white $black
+        inactive_workspace $black $black $white
+        urgent_workspace   $red   $red   $white
+    }
 }
 
 include local

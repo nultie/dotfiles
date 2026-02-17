@@ -1,4 +1,8 @@
-general { interval = 1 }
+general {
+    interval       = 1
+    color_degraded = '#c4b28a'
+    color_bad      = '#c4746e'
+}
 
 order += 'memory'
 order += 'cpu_usage'
