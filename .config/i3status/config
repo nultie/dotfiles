@@ -22,9 +22,14 @@ volume master {
 battery all {
     format             = '%status %percentage'
     format_down        = ''
+    status_chr         = '+'
+    status_bat         = '-'
+    status_unk         = '?'
+    status_full        = '!'
+    status_idle        = '='
     last_full_capacity = true
-    low_threshold      = 20
     threshold_type     = percentage
+    low_threshold      = 20
 }
 
 time { format = '%a %F %T' }
