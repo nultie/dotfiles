@@ -34,7 +34,7 @@ bindsym Super+Shift+BackSpace exec swaymsg exit
 
 bindsym Super+Return exec alacritty msg create-window || alacritty
 bindsym Super+w      exec firefox
-bindsym Super+e      exec pcmanfm
+bindsym Super+e      exec nemo
 bindsym Super+r      exec wmenu-run \
     -f $font -N $black -n $white -S $blue -s $white
 
