@@ -17,7 +17,7 @@ input type:keyboard {
 }
 output * {
     allow_tearing yes
-    background $black solid_color
+    background $(find $HOME/pics/bg -type f | shuf -n 1) fill $black
 }
 
 exec alacritty
@@ -38,10 +38,13 @@ bindsym Super+e      exec nemo
 bindsym Super+r      exec wmenu-run \
     -f $font -N $black -n $white -S $blue -s $white
 
-set $scrot_name "$HOME/pics/$(date '+%Y%m%d_%Hh%Mm%Ss.png')"
-bindsym Print         exec grim -              | tee $scrot_name | wl-copy
-bindsym Shift+Print   exec slurp | grim -g - - | tee $scrot_name | wl-copy
-bindsym Control+Print exec hyprpicker                            | wl-copy
+set $scrot_dir  $HOME/pics/scrot
+set $scrot_file $scrot_dir/$(date '+%Y%m%d_%Hh%Mm%Ss.png')
+bindsym Print exec \
+    'mkdir -p $scrot_dir; grim -              | tee $scrot_file | wl-copy'
+bindsym Shift+Print exec \
+    'mkdir -p $scrot_dir; slurp | grim -g - - | tee $scrot_file | wl-copy'
+bindsym Control+Print exec hyprpicker | wl-copy
 
 bindsym --locked XF86AudioMute exec \
     pactl set-sink-mute @DEFAULT_SINK@ toggle
