@@ -46,14 +46,13 @@ vim.keymap.set('n', '<M-l>', '<cmd>vertical resize +1<CR>')
 
 vim.lsp.enable({ 'clangd', 'rust_analyzer' })
 
-require('paq') {
-    'neovim/nvim-lspconfig',
-    'stevearc/oil.nvim',
-    'nvim-mini/mini.pick',
-    'nvim-mini/mini.icons',
-    'rebelot/kanagawa.nvim',
-    'savq/paq-nvim',
-}
+vim.pack.add({
+    'https://github.com/neovim/nvim-lspconfig',
+    'https://github.com/stevearc/oil.nvim',
+    'https://github.com/nvim-mini/mini.pick',
+    'https://github.com/nvim-mini/mini.icons',
+    'https://github.com/rebelot/kanagawa.nvim',
+})
 
 require('oil').setup({
     columns = { 'permissions', 'size', 'mtime', 'icon' },
