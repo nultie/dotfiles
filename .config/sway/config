@@ -20,7 +20,6 @@ output * {
     background $(find $HOME/pics/bg -type f | shuf -n 1) fill $black
 }
 
-exec alacritty
 exec swayidle -w \
     timeout 600 "swaylock -fuc $black" \
     timeout 600 "swaymsg 'output * power off'" \
@@ -33,7 +32,7 @@ bindsym Super+BackSpace       exec swaylock -fuc $black
 bindsym Super+Shift+BackSpace exec swaymsg exit
 
 bindsym Super+Return exec alacritty msg create-window || alacritty
-bindsym Super+w      exec firefox
+bindsym Super+w      exec helium-browser
 bindsym Super+e      exec nemo
 bindsym Super+r      exec wmenu-run \
     -f $font -N $black -n $white -S $blue -s $white
