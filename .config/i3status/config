@@ -4,13 +4,19 @@ general {
     color_bad      = '#c4746e'
 }
 
+order += 'disk /'
 order += 'memory'
+order += 'load'
 order += 'cpu_usage'
 order += 'volume master'
 order += 'battery all'
 order += 'time'
 
-memory { format = '%used' }
+disk / { format = '%used / %total' }
+
+memory { format = '%used / %total' }
+
+load { format = '%1min %5min %15min' }
 
 cpu_usage { format = '%usage' }
 
